@@ -1,6 +1,8 @@
-# Cancherks
-Sport installation system where students and employees can reserve any type of sport installation during the available times. 
-The administrators can manage the requests.
+# GestionEventos
+Event Manager System for ITCR.
 
-Authors:
-Maynor Martínez and Fernanda Murillo.
+Developed by:
+
+Richard Araya (richardarayapad@estudiantec.cr)
+
+Raúl Sanabria (correo_raul)

@@ -1,9 +1,58 @@
 ﻿@page
 @model Option1Model
 @{
-    ViewData["Title"] = "Option3";
+    ViewData["Title"] = "Historial";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial</title>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <div class="title-container">
+        <h1 class="center-title">Historial</h1>
+    </div>
+    <div class="two-columns">
+        <div class="column">
+            <h2>Próximos Eventos</h2>
+            <!-- Aquí puedes mostrar los próximos eventos -->
+            <div class="event">
+            <div class="event-image">
+                <img src="imagen_evento1.jpg" alt="Imagen del evento 1">
+            </div>
+            <div class="event-details">
+                <h4>Evento 1:</h4>
+                <p><strong>Título:</strong> Charla Sobre Diseño de Software</p>
+                <p><strong>Hora:</strong> 10:00 AM</p>
+                <p><strong>Lugar:</strong> Sala de conferencias</p>
+                <p><strong>Cupo Máximo:</strong> 100</p>
+                <p><strong>Organizador:</strong> ASODEC</p>
+            </div>
+        </div>
+            <!-- Agregar más eventos aquí -->
+        </div>
+        <div class="column">
+            <h2>Eventos Anteriores</h2>
+            <!-- Aquí puedes mostrar los eventos anteriores -->
+            <div class="event">
+            <div class="event-image">
+            <img src="imagen_evento2.jpg" alt="Imagen del evento 2">
+            </div>
+            <div class="event-details">
+            <h4>Evento 2:</h4>
+            <p><strong>Título:</strong> Charla Sobre Administracion de proyectos</p>
+            <p><strong>Hora:</strong> 11:00 AM</p>
+            <p><strong>Lugar:</strong> Sala de conferencias</p>
+            <p><strong>Cupo Máximo:</strong> 50</p>
+            <p><strong>Organizador:</strong> ASODEC</p>
+            </div>
+    </div>
+            <!-- Agregar más eventos anteriores aquí -->
+        </div>
+    </div>
+</body>
+</html>

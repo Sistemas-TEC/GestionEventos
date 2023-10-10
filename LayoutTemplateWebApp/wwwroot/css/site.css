@@ -138,8 +138,8 @@ img {
 .center-title {
     font-size: 3rem; /* Tamaño de fuente grande */
     text-align: center; /* Centrar el texto horizontalmente */
-    margin-top: 20px; /* Espacio en la parte superior del título */
-    padding: 10px; /* Espaciado interno opcional */
+    margin-top: 0; /* Espacio en la parte superior del título */
+    padding: 0; /* Espaciado interno opcional */
     /*background-color: #f1b442;  Color de fondo opcional */
     color: #ca720e; /* Color del texto opcional */
 }
@@ -158,15 +158,25 @@ img {
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Espacio entre el título y los botones */
+    margin-top: 0; /* Espacio entre el título y los botones */
 }
 
 .button {
-    margin: 0 10px; /* Espacio entre los botones */
+    margin: 0; /* Espacio entre los botones */
     padding: 10px 20px; /* Tamaño de los botones */
     font-size: 16px; /* Tamaño de fuente de los botones */
     background-color: #007bff; /* Color de fondo de los botones */
     color: #fff; /* Color del texto de los botones */
+    border: none; /* Sin borde */
+    cursor: pointer;
+}
+
+.button2 {
+    margin: 0; /* Espacio entre los botones */
+    padding: 10px 20px; /* Tamaño de los botones */
+    font-size: 16px; /* Tamaño de fuente de los botones */
+    background-color: #007bff; /* Color de fondo de los botones */
+    color: #fda500; /* Color del texto de los botones */
     border: none; /* Sin borde */
     cursor: pointer;
 }
@@ -182,7 +192,7 @@ img {
     overflow: hidden;
     white-space: nowrap;
     position: relative;
-    display: flex;
+    display: block;
 }
 
 /* Estilo para un día de eventos */
@@ -190,8 +200,8 @@ img {
    /* margin-bottom: 20px;  Espacio entre días de eventos */
    /*display: inline-block;*/
    /*vertical-align: top;*/
-   width: 300px; /* Ancho de cada día de eventos */
-   margin-right: 20px; /* Espacio entre los días */
+   /* Ancho de cada día de eventos */
+   /*margin-right: 20px; /* Espacio entre los días */
 }
 
 
@@ -220,13 +230,16 @@ img {
 
 /* Estilo para un evento individual */
 .event {
-    display: flex;
-    margin-bottom: 20px; /* Espacio entre eventos */
+    /*display: flex;
+    /*margin-bottom: 20px; /* Espacio entre eventos */
     border: 2px solid #000000; /* Borde de la caja */
     padding: 10px; /* Espaciado interno de la caja */
     border-radius: 10px; /* Borde redondeado */
     background-color: #21b5da; /* Color de fondo de la caja */
+    max-width: 540px;
+    margin: 0 auto;
 }
+
 
 /* Estilo para la imagen del evento */
 .event-image {
@@ -291,6 +304,30 @@ img {
     font-size: 20px;
     cursor: pointer;
 }
+/* Cambia el color de las flechas del Carousel a naranja */
+.carousel-control-prev,
+.carousel-control-next {
+    color: orange !important; /* Cambia el color de las flechas a naranja */
+}
+
+/* Cambia el color de las flechas al pasar el cursor por encima */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: darkorange !important; /* Cambia el color de las flechas a un tono más oscuro de naranja al pasar el cursor por encima */
+}
+/* Estilos CSS personalizados para los cuadros de eventos */
+.card-event {
+    background-color: #f8f9fa; /* Cambia el color de fondo */
+    border: 1px solid #ccc; /* Agrega un borde */
+    border-radius: 10px; /* Redondea las esquinas */
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1); /* Agrega una sombra */
+    transition: transform 0.2s; /* Efecto de transición suave */
+}
+
+.card-event:hover {
+    transform: translateY(-5px); /* Eleva ligeramente el cuadro en hover */
+}
+
 
 
 

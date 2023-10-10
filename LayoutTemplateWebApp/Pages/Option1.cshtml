@@ -1,7 +1,7 @@
 ﻿@page
 @model LayoutTemplateWebApp.Pages.Option1Model
 @{
-   ViewData["Title"] = "Calendario de Eventos";
+    ViewData["Title"] = "Calendario de Eventos";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -9,80 +9,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
+    <!-- Enlace a Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="site.css">
     <script src="site.js"></script>
 </head>
 <body>
-    <div class="title-container">
-        <h1 class="center-title">Calendario de Eventos</h1>
-        <div class="button-container">
-            <button class="button">Categoría</button>
-            <button class="button">Fechas</button>
-            <button class="button">Ubicaciones</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mt-5">
+                <h1 class="display-2">Calendario de Eventos</h1>
+            </div>
+        </div>
+        <!-- Botones -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary">Categoría</button>
+                    <button type="button" class="btn btn-primary">Fechas</button>
+                    <button type="button" class="btn btn-primary">Ubicaciones</button>
+                </div>
+            </div>
+        </div>
+        <!-- Lista de eventos con Carousel -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div id="eventCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <!-- Día 1 -->
+                        <div class="col-12 text-center mt-5">
+                        <h2 class="display-2">Dia 1</h2>
+                        <div class="carousel-item active">
+                            <div class="col-md-4 mb-4">
+                                <div class="event" data-event-id="1" onclick="showPopup(1)">
+                                    <div class="card">
+                                        <img src="imagen_evento1.jpg" alt="Imagen del evento 1" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Evento 1</h5>
+                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Diseño de Software</p>
+                                            <p class="card-text"><strong>Hora:</strong> 10:00 AM</p>
+                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
+                                            <p class="card-text"><strong>Cupo Máximo:</strong> 100</p>
+                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Evento 2 -->
+                        <div class="carousel-item">
+                            <div class="col-md-4 mb-4">
+                                <div class="event" data-event-id="2" onclick="showPopup(2)">
+                                    <div class="card">
+                                        <img src="imagen_evento2.jpg" alt="Imagen del evento 2" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Evento 2</h5>
+                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Administración de Proyectos</p>
+                                            <p class="card-text"><strong>Hora:</strong> 11:00 AM</p>
+                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
+                                            <p class="card-text"><strong>Cupo Máximo:</strong> 50</p>
+                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Agrega más eventos aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#eventCarousel" role="button2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#eventCarousel" role="button2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-<div class="event-list">
-    <div class="event-day">
-        <h3>Lunes 25 de septiembre</h3>
-        <div class="event" onclick="showPopup(1)">
-            <div class="event-image">
-                <img src="imagen_evento1.jpg" alt="Imagen del evento 1">
-            </div>
-            <div class="event-details">
-                <h4>Evento 1:</h4>
-                <p><strong>Título:</strong> Charla Sobre Diseño de Software</p>
-                <p><strong>Hora:</strong> 10:00 AM</p>
-                <p><strong>Lugar:</strong> Sala de conferencias</p>
-                <p><strong>Cupo Máximo:</strong> 100</p>
-                <p><strong>Organizador:</strong> ASODEC</p>
+           <!-- Lista de eventos con Carousel -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div id="eventCarousel2" class="carousel slide">
+                    <div class="carousel-inner">
+                        <!-- Día 2 -->
+                        <div class="col-12 text-center mt-5">
+                        <h2 class="display-2">Dia 2</h2>
+                        <div class="carousel-item active">
+                            <div class="col-md-4 mb-4">
+                                <div class="event" data-event-id="1" onclick="showPopup(1)">
+                                    <div class="card">
+                                        <img src="imagen_evento1.jpg" alt="Imagen del evento 1" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Evento 1</h5>
+                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Diseño de Software</p>
+                                            <p class="card-text"><strong>Hora:</strong> 10:00 AM</p>
+                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
+                                            <p class="card-text"><strong>Cupo Máximo:</strong> 100</p>
+                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Día 2 -->
+                        <div class="carousel-item">
+                            <div class="col-md-4 mb-4">
+                                <div class="event" data-event-id="2" onclick="showPopup(2)">
+                                    <div class="card">
+                                        <img src="imagen_evento2.jpg" alt="Imagen del evento 2" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Evento 2</h5>
+                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Administración de Proyectos</p>
+                                            <p class="card-text"><strong>Hora:</strong> 11:00 AM</p>
+                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
+                                            <p class="card-text"><strong>Cupo Máximo:</strong> 50</p>
+                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Agrega más eventos aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#eventCarousel2" role="button2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#eventCarousel2" role="button2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="event" onclick="showPopup(2)">
-            <div class="event-image">
-                <img src="imagen_evento2.jpg" alt="Imagen del evento 2">
-            </div>
-            <div class="event-details">
-                <h4>Evento 2:</h4>
-                <p><strong>Título:</strong> Charla Sobre Administracion de proyectos</p>
-                <p><strong>Hora:</strong> 11:00 AM</p>
-                <p><strong>Lugar:</strong> Sala de conferencias</p>
-                <p><strong>Cupo Máximo:</strong> 50</p>
-                <p><strong>Organizador:</strong> ASODEC</p>
-            </div>
-        </div>
-        <!-- Agregar más eventos aquí -->
     </div>
-    <div class="event-day">
-        <h3>Martes 26 de septiembre</h3>
-        <div class="event">
-            <div class="event-image">
-                <img src="imagen_evento3.jpg" alt="Imagen del evento 3">
-            </div>
-            <div class="event-details">
-                <h4>Evento 1:</h4>
-                <p><strong>Título:</strong> Charla Sobre Investigacion de Operaciones</p>
-                <p><strong>Hora:</strong> 9:00 AM</p>
-                <p><strong>Lugar:</strong> Sala de conferencias</p>
-                <p><strong>Cupo Máximo:</strong> 20</p>
-                <p><strong>Organizador:</strong> ASODEC</p>
+    <!-- Contenedor del modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Título del Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Título:</strong> Descripción del evento</p>
+                    <p><strong>Hora:</strong> Hora del evento</p>
+                    <!-- Agregar más detalles del evento aquí -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Asistiré</button>
+                    <button type="button" class="btn btn-primary">Me interesa</button>
+                </div>
             </div>
         </div>
-    
-    <!-- Agregar más días y eventos aquí -->
-</div>
-<div class="scroll-button scroll-button-left">←</div>
-<div class="scroll-button scroll-button-right">→</div>   
-<!-- Contenedor del popup -->
-<div class="popup" id="eventPopup">
-    <div class="popup-content">
-        <span class="close" onclick="hidePopup()">&times;</span>
-        <h2>Título del Evento</h2>
-        <p><strong>Título:</strong> Descripción del evento</p>
-        <p><strong>Hora:</strong> Hora del evento</p>
-        <!-- Agrega más detalles del evento aquí -->
-        <button class="button">Asistiré</button>
-        <button class="button">Me interesa</button>
     </div>
-</div>
 </body>
 </html>

@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="site.css">
     <script src="site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -33,124 +34,33 @@
         </div>
         <!-- Lista de eventos con Carousel -->
         <div class="row mt-4">
-            <div class="col-md-12">
-                <div id="eventCarousel" class="carousel slide">
-                    <div class="carousel-inner">
-                        <!-- Día 1 -->
-                        <div class="carousel-inner">
-                        @for (int i = 0; i < Model.Events.Count; i++)
+            @foreach (var dateEvents in Model.GroupedEvents)
+            {
+                <div class="col-md-12">
+                    <h3>@dateEvents.Key.ToShortDateString()</h3>
+                    <div class="event-container">
+                        @foreach (var evento in dateEvents.Value)
                         {
-                            <div class="carousel-item @(i == 0 ? "active" : "")">
-                                <div class="col-md-4 mb-4">
-                                    <div class="event" data-event-id="@Model.Events[i].Id" onclick="showPopup(@Model.Events[i].Id)">
-                                        <div class="card">
-                                            <img src="@Model.Events[i].ImageUrl" alt="Imagen del evento" class="card-img-top">
-                                            <div class="card-body">
-                                                <h5 class="card-title">@Model.Events[i].Name</h5>
-                                                <p class="card-text"><strong>Título:</strong> @Model.Events[i].Description</p>
-                                                <p class="card-text"><strong>Hora:</strong> @Model.Events[i].Date.ToString("HH:mm tt")</p>
-                                                <p class="card-text"><strong>Lugar:</strong> @Model.Events[i].Location</p>
-                                                <p class="card-text"><strong>Cupo Máximo:</strong> @Model.Events[i].MaxCapacity</p>
-                                                <p class="card-text"><strong>Organizador:</strong> @Model.Events[i].Organizer</p>
-                                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="event" data-event-id="@evento.idEvent" onclick="showPopup(@evento.idEvent)">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@evento.name</h5>
+                                            <p class="card-text"><strong>Descripcion:</strong> @evento.description</p>
+                                            <p class="card-text"><strong>Cupo Máximo:</strong> @evento.maxCapacity</p>
+                                            <p class="card-text"><strong>Organizador:</strong> @evento.organizer</p>
+                                            <p class="card-text"><strong>Costo de Entrada:</strong> @evento.entryCost</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
                     </div>
-
-
-                        <!--Evento 2 -->
-                        <div class="carousel-item">
-                            <div class="col-md-4 mb-4">
-                                <div class="event" data-event-id="2" onclick="showPopup(2)">
-                                    <div class="card">
-                                        <img src="imagen_evento2.jpg" alt="Imagen del evento 2" class="card-img-top">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Evento 2</h5>
-                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Administración de Proyectos</p>
-                                            <p class="card-text"><strong>Hora:</strong> 11:00 AM</p>
-                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
-                                            <p class="card-text"><strong>Cupo Máximo:</strong> 50</p>
-                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Agrega más eventos aquí -->
-                    </div>
-                    <a class="carousel-control-prev" href="#eventCarousel" role="button2" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </a>
-                    <a class="carousel-control-next" href="#eventCarousel" role="button2" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
-                    </a>
                 </div>
-            </div>
+            }
         </div>
-    </div>
-           <!-- Lista de eventos con Carousel -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div id="eventCarousel2" class="carousel slide">
-                    <div class="carousel-inner">
-                        <!-- Día 2 -->
-                        <div class="col-12 text-center mt-5">
-                        <h2 class="display-2">Dia 2</h2>
-                        <div class="carousel-item active">
-                            <div class="col-md-4 mb-4">
-                                <div class="event" data-event-id="1" onclick="showPopup(1)">
-                                    <div class="card">
-                                        <img src="imagen_evento1.jpg" alt="Imagen del evento 1" class="card-img-top">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Evento 1</h5>
-                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Diseño de Software</p>
-                                            <p class="card-text"><strong>Hora:</strong> 10:00 AM</p>
-                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
-                                            <p class="card-text"><strong>Cupo Máximo:</strong> 100</p>
-                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Día 2 -->
-                        <div class="carousel-item">
-                            <div class="col-md-4 mb-4">
-                                <div class="event" data-event-id="2" onclick="showPopup(2)">
-                                    <div class="card">
-                                        <img src="imagen_evento2.jpg" alt="Imagen del evento 2" class="card-img-top">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Evento 2</h5>
-                                            <p class="card-text"><strong>Título:</strong> Charla Sobre Administración de Proyectos</p>
-                                            <p class="card-text"><strong>Hora:</strong> 11:00 AM</p>
-                                            <p class="card-text"><strong>Lugar:</strong> Sala de conferencias</p>
-                                            <p class="card-text"><strong>Cupo Máximo:</strong> 50</p>
-                                            <p class="card-text"><strong>Organizador:</strong> ASODEC</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Agrega más eventos aquí -->
-                    </div>
-                    <a class="carousel-control-prev" href="#eventCarousel2" role="button2" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </a>
-                    <a class="carousel-control-next" href="#eventCarousel2" role="button2" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Contenedor del modal -->
     <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

@@ -1,32 +1,35 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore; 
-using MyLayoutTemplateWebApp.DbContext;
-using LayoutTemplateWebApp.DbModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using LayoutTemplateWebApp.Model;
+using LayoutTemplateWebApp.Data;
 
 namespace LayoutTemplateWebApp.Pages
 {
     public class Option1Model : PageModel
+
     {
-        private readonly ApplicationDbContext _context; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
+        private readonly ApplicationDbContext _db; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
 
-        public List<Event> Events { get; set; }
+        public Dictionary<DateTime, List<Event>> GroupedEvents { get; set; }
 
-        public Option1Model(ApplicationDbContext context)
+        public Option1Model(ApplicationDbContext db)
         {
-            _context = context;
+            _db = db;
         }
 
         public void OnGet()
         {
             // Recuperar eventos de la base de datos
-            Events = _context.Events
-                .Include(e => e.EventType) // Si tienes una relación con un tipo de evento, inclúyelo
-                .Include(e => e.EventState) // Si tienes una relación con el estado del evento, inclúyelo
-                .ToList();
+            var events = _db.Event.ToList();
+
+            // Agrupar eventos por fecha
+            GroupedEvents = events
+                .GroupBy(e => e.date.Date)
+                .ToDictionary(g => g.Key, g => g.ToList());
         }
     }
 }

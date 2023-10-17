@@ -1,6 +1,7 @@
+using LayoutTemplateWebApp.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace LayoutTemplateWebApp.DbContext
+namespace LayoutTemplateWebApp.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -8,7 +9,7 @@ namespace LayoutTemplateWebApp.DbContext
         {
         }
 
-        public DbSet<Event> Events { get; set; } // DbSet para la entidad Event
+        public DbSet<Event> Event { get; set; } // DbSet para la entidad Event
         // Agrega otros DbSet para las demás entidades de tu modelo aquí
     }
 }

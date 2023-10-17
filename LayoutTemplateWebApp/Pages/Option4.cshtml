@@ -1,0 +1,59 @@
+@page
+@model Option4Model
+@{
+    ViewData["Title"] = "Crear Evento";
+}
+<body>
+<div class="container">
+    <h1 class="mt-4">Crear un Nuevo Evento</h1>
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="eventName" class="form-label">1. Nombre del Evento</label>
+            <input type="text" class="form-control" id="eventName" name="eventName" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="eventDate" class="form-label">2. Fecha del Evento</label>
+            <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="eventDescription" class="form-label">3. Descripción del Evento</label>
+            <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="maxCapacity" class="form-label">4. Capacidad Máxima del Evento</label>
+            <input type="number" class="form-control" id="maxCapacity" name="maxCapacity" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="entryCost" class="form-label">5. Costo de Entrada del Evento</label>
+            <input type="text" class="form-control" id="entryCost" name="entryCost" required>
+        </div>
+
+        <div class="mb-3">
+            <label>6. El evento es académico o recreativo</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="eventType" id="academicEvent" value="academic" required>
+                <label class="form-check-label" for="academicEvent">
+                    Académico
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="eventType" id="recreationalEvent" value="recreational" required>
+                <label class="form-check-label" for="recreationalEvent">
+                    Recreativo
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Evento</button>
+    </form>
+</div>
+
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-5rtj9St7Fq3XRWeGC6zPp19MgV1Fp4eM5pUnR+OGp1Q1ZC1l9RMjw5E5f5Frw5L5C" crossorigin="anonymous"></script>
+</body>
+</html>

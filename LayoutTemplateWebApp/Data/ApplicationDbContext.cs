@@ -12,7 +12,7 @@ namespace LayoutTemplateWebApp.Data
         }
 
         public DbSet<Event> Event { get; set; } // DbSet para la entidad Event
-        public DbSet<FacilityType> FacilityTypes { get; set; }
+        public DbSet<FacilityType> FacilityType { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Model.Constraint> Constraints { get; set; }
         public DbSet<FacilityAdministrator> FacilityAdministrators { get; set; }

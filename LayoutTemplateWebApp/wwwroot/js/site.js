@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-<script>
     $(document).ready(function () {
         $('#openInstallationModal').click(function () {
             $('#installationModal').modal('show');
@@ -53,6 +52,37 @@ document.addEventListener("DOMContentLoaded", function () {
     $('#installationModal').modal('hide');
         });
     });
-</script>
+
+        $(document).ready(function () {
+            // Cuando se cambia el valor del dropdown
+            $('#buildingTypeDropdown').change(function () {
+                var selectedTypeId = $(this).val();
+                $('#selectedInstallationId').val(selectedTypeId); // Actualizar el input oculto
+
+                // Ocultar todas las filas de la tabla
+                $('#buildingGrid tr').hide();
+
+                // Mostrar solo las filas correspondientes al tipo seleccionado
+                $('#buildingGrid tr[data-type="' + selectedTypeId + '"]').show();
+            });
+        });
+
+        $(document).ready(function () {
+            var selectedInstallationName = null; // Variable para guardar el nombre de la instalación seleccionada
+
+            // Cuando se hace clic en "Seleccionar" en el modal
+            $('.select-building').click(function () {
+                // Obtener el nombre del edificio seleccionado
+                var selectedBuildingRow = $(this).closest('tr');
+                var selectedInstallationName = selectedBuildingRow.find('td:first').text(); // Obtener el texto de la primera celda (nombre del edificio)
+
+                // Mostrar el nombre de la instalación seleccionada en el campo correspondiente
+                $('#selectedInstallationId').val(selectedInstallationName);
+
+                // Ocultar el modal
+                $('#installationModal').modal('hide');
+            });
+        });
+
 
 

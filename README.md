@@ -5,4 +5,4 @@ Developed by:
 
 Richard Araya (richardarayapad@estudiantec.cr)
 
-Raúl Sanabria (correo_raul)
+Raúl Sanabria (raulsanabria@estudiantec.cr)

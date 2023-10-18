@@ -10,6 +10,9 @@ VALUES ('Académico', 'académico');
 INSERT INTO [dbo].[EventType] ([name], [description])
 VALUES ('Recreativo', 'recreativo');
 
+INSERT INTO [dbo].[EventType] ([name], [description])
+VALUES ('Música', 'música');
+
 -- Leer (Read)
 SELECT * FROM [dbo].[EventType];
 
@@ -45,33 +48,54 @@ VALUES ('Cupo límitado');
 INSERT INTO [dbo].[CapacityType] ([name])
 VALUES ('Reservado');
 ---------------------CRUDS Event-----------------------------------------
+/*
+1, B3-06
+2, Centro de las Artes
+3, Piscina TEC
+4, Cancha Multiusos
+5, Auditorio de Computación
+*/
+
+
+INSERT INTO [dbo].[EventType] ([name], [description])
+VALUES ('Música', 'música');
+
 -- Evento 1
 INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType], idCapacityType, [idFacility])
-VALUES ('Conferencia de Tecnología', '2023-11-10', 1, 'Una conferencia sobre las últimas tecnologías', 'TechCon', '200', '25', 1,2, 2);
+VALUES ('Conferencia de Tecnología', '2023-10-20 03:00:00 PM', 1, 'Una conferencia sobre las últimas tecnologías', 'TechCon', '200', '25', 1,2, 1);
 
 -- Evento 2
 INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType], idCapacityType, [idFacility])
-VALUES ('Feria de Libros', '2023-11-15', 2, 'Una feria para amantes de la lectura', 'Book Expo', '300', '0', 2,1 , 1);
+VALUES ('Feria de Libros', '2023-10-20 01:00:00 PM', 2, 'Una feria para amantes de la lectura', 'Book Expo', '300', '0', 1,1 , 2);
 
 -- Evento 3
 INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType], idCapacityType, [idFacility])
-VALUES ('Concierto en Vivo', '2023-12-05', 3, 'Un concierto de tu banda favorita', 'Live Music Co.', '1000', '50', 1,1, 3);
+VALUES ('Concierto en Vivo', '2023-10-20 05:00:00 PM', 3, 'Un concierto de tu banda favorita', 'Live Music Co.', '150', '50', 3,1, 2);
 
 -- Evento 4
 INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType], idCapacityType,[idFacility])
-VALUES ('Seminario de Marketing', '2023-11-20', 1, 'Aprende estrategias de marketing efectivas', 'Marketing Pro', '150', '30', 2,2, 5);
+VALUES ('Seminario de Marketing', '20231020 03:00:00 PM', 1, 'Aprende estrategias de marketing efectivas', 'Marketing Pro', '150', '30', 1,2, 5);
 
 -- Evento 4
 INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType],idCapacityType,[idFacility])
-VALUES ('Evento de prueba de tiempo 2', '20231205 12:34:09 AM', 1, 'Prueba bases de datos con tiempo', 'Raul', '150', '30', 1, 2, 3);
+VALUES ('Partidos de baloncesto', '20231020 01:00:00 PM', 1, 'Prueba bases de datos con tiempo', 'Raul', '150', '30', 2, 2, 4);
 
--- Evento 5
+-- Evento 4
+INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType], idCapacityType,[idFacility])
+VALUES ('Seminario de Marketing', '20231120 03:00:00 PM', 1, 'Aprende estrategias de marketing efectivas', 'Marketing Pro', '150', '30', 1,2, 5);
+
+-- Evento 4
 INSERT INTO [dbo].[Event] ([name], [date], [idEventState], [description], [organizer], [capacityNumber], [entryCost], [idEventType],idCapacityType,[idFacility])
-VALUES ('Evento de prueba con un nombre supeeeeer largo a ver que pasa', '20231205 12:34:09 AM', 1, 'Prueba bases de datos con tiempo', 'Raul', '150', '30', 1, 2, 3);
+VALUES ('Partidos de baloncesto', '20231205 01:00:00 PM', 1, 'Prueba bases de datos con tiempo', 'Raul', '150', '30', 2, 2, 4);
+
+UPDATE dbo.[Event] SET idImage=1;
+
+
 
 SELECT * FROM EventType;
 SELECT * FROM dbo.[Event];
-DELETE FROM dbo.[Event];
+
+--DELETE FROM dbo.[Event];
 ---------------------CRUDS FacilityType-----------------------------------------
 --instalacion 1
 INSERT INTO FacilityType (name)

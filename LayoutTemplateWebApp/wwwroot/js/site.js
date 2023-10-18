@@ -34,3 +34,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+<script>
+    $(document).ready(function () {
+        $('#openInstallationModal').click(function () {
+            $('#installationModal').modal('show');
+        });
+
+    // Handle the "Seleccionar" button within the modal
+    $('#selectInstallation').click(function () {
+            // Get the selected installation from the dropdown
+            var selectedInstallation = $('#installationDropdown').val();
+
+    // Add your logic to do something with the selected installation
+    // For example, update the "selectedInstallationId" input
+    $('#selectedInstallationId').val(selectedInstallation);
+
+    // Close the modal
+    $('#installationModal').modal('hide');
+        });
+    });
+</script>
+
+

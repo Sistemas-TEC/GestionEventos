@@ -36,28 +36,15 @@
         <div class="row mt-4">
             @foreach (var dateEvents in Model.GroupedEvents)
             {
-                @*<div class="col-md-12">*@
+                <div class="col-md-12">
                     <h3>@dateEvents.Key.ToShortDateString()</h3>
-                     var column_number=0;
-                    <div class="container"> @* Esta es la clase que agrupa los eventos de la fecha. Se trata cada fecha como una única *@
-                    <div class="row">
-                      
+                    <div class="event-container">
                         @foreach (var evento in dateEvents.Value)
                         {
-                            if (column_number == 3)
-                            {
-                                @* Salta a la siguiente línea *@
-                                <div class="w-100"></div>
-                                column_number = 0;
-                            }
-
-                            <div class="col-4">
-                                @* mb-4 agrega margin bottom tamaño 4. La clase event se puede cambiar, es propia.*@
-                                <div class="event mb-4" data-event-id="@evento.idEvent" onclick="showPopup(@evento.idEvent)">
-                                    
+                            <div class="col-md-4 mb-4">
+                                <div class="event" data-event-id="@evento.idEvent" onclick="showPopup(@evento.idEvent)">
                                     <div class="card">
                                         <div class="card-body">
-                                            <img src="https://picsum.photos/200" class="card-img-top" alt="texto_alternativo">
                                             <h5 class="card-title">@evento.name</h5>
                                             <p class="card-text"><strong>Descripcion:</strong> @evento.description</p>
                                             <p class="card-text"><strong>Cupo Máximo:</strong> @evento.maxCapacity</p>
@@ -67,7 +54,6 @@
                                     </div>
                                 </div>
                             </div>
-                            column_number++;
                         }
                     </div>
                 </div>

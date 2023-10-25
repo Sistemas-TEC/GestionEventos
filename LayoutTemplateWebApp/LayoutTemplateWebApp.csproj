@@ -7,20 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\Shared\ErrorLayout.cshtml.css" />
-    <None Remove="Pages\Shared\LayoutOrganizador.cshtml.css" />
-    <None Remove="Pages\Shared\_LayoutEstudiante.cshtml.css" />
-    <None Remove="Pages\Shared\_LayoutProfesor.cshtml.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Pages\Shared\_ErrorLayout.cshtml.css" />
-    <Compile Include="Pages\Shared\_LayoutOrganizador.cshtml.css" />
-    <Compile Include="Pages\Shared\_LayoutEstudiante.cshtml.css" />
-    <Compile Include="Pages\Shared\_LayoutProfesor.cshtml.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">

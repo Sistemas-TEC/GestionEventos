@@ -1,8 +1,10 @@
 using LayoutTemplateWebApp.Data;
 using LayoutTemplateWebApp.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -14,7 +16,6 @@ namespace LayoutTemplateWebApp.Pages
     {
         private readonly IHttpClientFactory _clientFactory;
         public string role { get; set; }
-
         public List<UserAPIModel> PersonList { get; set; }
         public string RawJsonData { get; set; }
         private readonly ApplicationDbContext _db;
@@ -26,8 +27,11 @@ namespace LayoutTemplateWebApp.Pages
         [BindProperty]
         public IFormFile EventImage { get; set; }
 
+        
+        public DateTime datetime { get; set; }
+
         [BindProperty]
-        public Event Events { get; set; }
+        public Event myEvent { get; set; }
 
         public Option4Model(ApplicationDbContext db, IHttpClientFactory clientFactory)
         {
@@ -76,9 +80,9 @@ namespace LayoutTemplateWebApp.Pages
             var types = _db.FacilityType.ToList();
 
             // Agrupar instalaciones por idBuildingType
-           GroupedFacilities = facilities
-                .GroupBy(f => f.idBuildingType)
-               .ToDictionary(g => g.Key, g => g.ToList());
+            GroupedFacilities = facilities
+                 .GroupBy(f => f.idBuildingType)
+                .ToDictionary(g => g.Key, g => g.ToList());
 
             Ftypes = types;
 
@@ -87,8 +91,9 @@ namespace LayoutTemplateWebApp.Pages
         public async Task<IActionResult> OnPost()
         {
 
-            Console.WriteLine($"Fecha del formulario: {Events.date}");
-
+            Debug.WriteLine($"Fecha del formulario: {myEvent.date}");
+            Debug.WriteLine("Fecha del formulario: " + myEvent.description);
+            
             if (EventImage != null && EventImage.Length > 0)
             {
                 // Verifica que se haya cargado una imagen
@@ -101,7 +106,7 @@ namespace LayoutTemplateWebApp.Pages
                     var image = new Image
                     {
                         url = "C:\\Users\\Raul\\Desktop\\ProyectoDiseno\\GestionEventos-main\\LayoutTemplateWebApp\\Images\\", // Debes especificar la ubicación de almacenamiento real aquí
-                                                                // Otros campos de la imagen, si los tienes
+                                                                                                                               // Otros campos de la imagen, si los tienes
                     };
 
                     // Agrega la imagen a la base de datos
@@ -111,9 +116,13 @@ namespace LayoutTemplateWebApp.Pages
                     await _db.SaveChangesAsync();
                 }
             }
-        await _db.Event.AddAsync(Events);
-        await _db.SaveChangesAsync(); 
-        return RedirectToPage("/Option1");
+            myEvent.organizer = HttpContext.Session.GetString("email");
+            myEvent.idCapacityType = 2;
+            myEvent.idEventState = 1;
+            Debug.WriteLine("Fecha del formulario: " + myEvent.idFacility);
+            await _db.Event.AddAsync(myEvent);
+            await _db.SaveChangesAsync();
+            return RedirectToPage("/Option1");
         }
     }
 }

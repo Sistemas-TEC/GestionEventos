@@ -17,7 +17,6 @@ namespace LayoutTemplateWebApp.Pages
 
         public UserAPIModel User { get; set; }
 
-
         public string RawJsonData { get; set; }
 
 
@@ -25,6 +24,7 @@ namespace LayoutTemplateWebApp.Pages
         {
             _clientFactory = clientFactory;
         }
+
 
         public async Task OnGetAsync(string email)
         {
@@ -48,9 +48,13 @@ namespace LayoutTemplateWebApp.Pages
                 {
                     Response.Redirect("/Profesor/BienvenidaProfesor");
                 }
-                else
+                else if (HttpContext.Session.GetString("role") == "1919")
                 {
                     Response.Redirect("/Organizador/BienvenidaOrganizador");
+                }
+                else
+                {
+                    Response.Redirect("/ErrorPage");
                 }
 
 
@@ -126,9 +130,13 @@ namespace LayoutTemplateWebApp.Pages
             {
                 Response.Redirect("/Profesor/BienvenidaProfesor");
             }
-            else
+            else if (HttpContext.Session.GetString("role") == "1919")
             {
                 Response.Redirect("/Organizador/BienvenidaOrganizador");
+            }
+            else
+            {
+                Response.Redirect("/ErrorPage");
             }
 
         }

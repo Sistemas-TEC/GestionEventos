@@ -56,7 +56,10 @@ namespace LayoutTemplateWebApp.Data
 
 			modelBuilder.Entity<Facility>().HasOne(fa => fa.FacilityAdministrator).
 			   WithMany(fa => fa.facilities).HasForeignKey(k => k.idFacilityAdministrator);
-		}
+
+            modelBuilder.Entity<Facility>().HasOne(fa => fa.FacilityAdministrator).
+               WithMany(fa => fa.facilities).HasForeignKey(k => k.idFacilityAdministrator);
+        }
 
 	}
 }

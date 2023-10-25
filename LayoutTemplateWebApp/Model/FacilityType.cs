@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace LayoutTemplateWebApp.Model
 {
@@ -6,6 +7,8 @@ namespace LayoutTemplateWebApp.Model
     {
         [Key]
         public int idFacilityType { get; set; }
+
+        [DisplayName("Nombre")]
         public string name { get; set; }
 
 		// navigation properties

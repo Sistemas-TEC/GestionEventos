@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LayoutTemplateWebApp.Model
@@ -8,29 +9,42 @@ namespace LayoutTemplateWebApp.Model
         [Key]
         public int idFacility { get; set; }
 
+        [DisplayName("Nombre")]
         public string name { get; set; }
 
 
-
+        [DisplayName("Capacidad")]
         public int capacity { get; set; }
 
-		[ForeignKey("FacilityType")]
+        
+        [ForeignKey("FacilityType")]
 		public int idFacilityType { get; set; }
 
-		[ForeignKey("Location")]
+        
+        [ForeignKey("Location")]
 		public int idLocation { get; set; }
 
-		[ForeignKey("Image")]
+        
+        [ForeignKey("Image")]
 		public int idImage { get; set; }
 
-		[ForeignKey("FacilityAdministrator")]
+        
+        [ForeignKey("FacilityAdministrator")]
 		public int idFacilityAdministrator { get; set; }
 
-		// navigation properties
-		public FacilityType FacilityType { get; set; }
-		public Location Location { get; set; }
-		public Image Image { get; set; }
-		public FacilityAdministrator FacilityAdministrator { get; set; }
+        // navigation properties
+        [DisplayName("Tipo de Instalación")]
+        public FacilityType FacilityType { get; set; }
+
+
+        [DisplayName("Ubicación")]
+        public Location Location { get; set; }
+
+        [DisplayName("Imagen")]
+        public Image Image { get; set; }
+
+        [DisplayName("Administrador")]
+        public FacilityAdministrator FacilityAdministrator { get; set; }
 		
 	}
 }

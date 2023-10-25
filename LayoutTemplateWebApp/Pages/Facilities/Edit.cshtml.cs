@@ -47,9 +47,7 @@ namespace LayoutTemplateWebApp.EventosTemp
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            // Esto es un hack porque cuentan como errores
-            // que los objetos no se hayan creado.
-            if (ModelState.ErrorCount<5)
+            if (ModelState.ErrorCount>=5)
             {
                 return Page();
             }

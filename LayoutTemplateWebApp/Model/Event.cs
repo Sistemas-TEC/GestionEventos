@@ -33,6 +33,7 @@ namespace LayoutTemplateWebApp.Model
         public EventState EventState { get; set; }
 		public Facility Facility { get; set; }
         public Image Image { get; set; }
+
 		//public string EventType { get; set; }
 		//public string EventState { get; set; }
 	}

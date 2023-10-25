@@ -4,11 +4,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<h1 class="display-2 mt-4 text-center">Gestión de Instalaciones</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <div class="text-center">
+        
+    <a class="btn btn-primary col-2" asp-page="Create"> Registrar nueva instalación </a>
+    </div>
 </p>
 <table class="table">
     <thead>
@@ -56,9 +58,8 @@
                 @Html.DisplayFor(modelItem => item.FacilityAdministrator.email)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.idFacility">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.idFacility">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.idFacility">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.idFacility">Modificar</a> |
+                <a asp-page="./Delete" asp-route-id="@item.idFacility">Eliminar</a>
             </td>
         </tr>
 }

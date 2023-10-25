@@ -1,0 +1,55 @@
+﻿@page
+@model LayoutTemplateWebApp.EventosTemp.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Facility</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facility.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facility.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facility.capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facility.capacity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facility.FacilityType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facility.FacilityType.idFacilityType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facility.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facility.Location.description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facility.Image)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facility.Image.alternative_text)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Facility.FacilityAdministrator)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Facility.FacilityAdministrator.email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Facility?.idFacility">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -12,12 +12,16 @@ namespace LayoutTemplateWebApp.Data
         }
 
         public DbSet<Event> Event { get; set; } // DbSet para la entidad Event
+
+        public DbSet<Facility> Facility { get; set; }
+
         public DbSet<FacilityType> FacilityType { get; set; }
-        public DbSet<Location> Locations { get; set; }
-        public DbSet<Model.Constraint> Constraints { get; set; }
-        public DbSet<FacilityAdministrator> FacilityAdministrators { get; set; }
-        public DbSet<Person> Persons { get; set; }
-        public DbSet<Facility> Facility { get; set; }                                        // Agrega otros DbSet para las demás entidades de tu modelo aquí
+        public DbSet<Location> Location { get; set; }
+        public DbSet<Model.Constraint> Constraint { get; set; }
+        public DbSet<FacilityAdministrator> FacilityAdministrator { get; set; }
+        public DbSet<Person> Person { get; set; }
+		public DbSet<Image> Image { get; set; }
+		                                        // Agrega otros DbSet para las demás entidades de tu modelo aquí
         public async Task CreateEventAsync(string name, DateTime date, int idEventState, string description, string organizer, string maxCapacity, string entryCost, int idEventType)
         {
             using (var connection = Database.GetDbConnection() as SqlConnection)
@@ -42,5 +46,17 @@ namespace LayoutTemplateWebApp.Data
                 }
             }
         }
-    }
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+            modelBuilder.Entity<Facility>().HasOne(fa => fa.FacilityType).
+                WithMany(ft => ft.facilities).HasForeignKey(k => k.idFacilityType);
+			
+            modelBuilder.Entity<Facility>().HasOne(fa => fa.Location).
+			   WithMany(lc => lc.facilities).HasForeignKey(k => k.idLocation);
+
+			modelBuilder.Entity<Facility>().HasOne(fa => fa.FacilityAdministrator).
+			   WithMany(fa => fa.facilities).HasForeignKey(k => k.idFacilityAdministrator);
+		}
+
+	}
 }

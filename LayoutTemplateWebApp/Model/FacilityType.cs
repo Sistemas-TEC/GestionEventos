@@ -7,5 +7,8 @@ namespace LayoutTemplateWebApp.Model
         [Key]
         public int idFacilityType { get; set; }
         public string name { get; set; }
-    }
+
+		// navigation properties
+		public ICollection<Facility> facilities { get; set; }
+	}
 }

@@ -19,18 +19,19 @@ namespace LayoutTemplateWebApp.Pages
         }
 
         public void OnGet()
-        {
+        {   
+            /*
             // Recuperar instalaciones de la base de datos
             var facilities = _db.Facility.ToList();
             var types = _db.FacilityType.ToList();
 
             // Agrupar instalaciones por idBuildingType
            GroupedFacilities = facilities
-                .GroupBy(f => f.idBuildingType)
+                .GroupBy(f => f.idFacilityType)
                .ToDictionary(g => g.Key, g => g.ToList());
 
             Ftypes = types;
-
+            */
         }
     }
 }

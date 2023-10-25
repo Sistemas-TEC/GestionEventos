@@ -1,0 +1,66 @@
+﻿@page
+@model LayoutTemplateWebApp.EventosTemp.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].FacilityType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility[0].FacilityAdministrator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Facility) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityType.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image.alternative_text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityAdministrator.email)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.idFacility">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.idFacility">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.idFacility">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -28,7 +28,6 @@ namespace LayoutTemplateWebApp.EventosTemp
                 Facility = await _context.Facility
                 .Include(f => f.FacilityAdministrator)
                 .Include(f => f.FacilityType)
-                .Include(f => f.Image)
                 .Include(f => f.Location).ToListAsync();
             }
         }

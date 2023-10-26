@@ -1,25 +1,22 @@
-ï»¿using LayoutTemplateWebApp.Data;
+using LayoutTemplateWebApp.Data;
 using LayoutTemplateWebApp.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
-namespace LayoutTemplateWebApp.Pages
+namespace LayoutTemplateWebApp.Pages.Organizador
 {
-    public class PrivacyModel : PageModel
+    public class BienvenidaOrganizadorModel : PageModel
     {
-
+        public List<Event> Solicitudes { get; set; }
         private readonly IHttpClientFactory _clientFactory;
         public string role { get; set; }
 
         public List<UserAPIModel> PersonList { get; set; }
-
         public string RawJsonData { get; set; }
-        private readonly ILogger<PrivacyModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger, IHttpClientFactory clientFactory)
+        public BienvenidaOrganizadorModel(IHttpClientFactory clientFactory)
         {
-            _logger = logger;
             _clientFactory = clientFactory;
         }
 
@@ -58,8 +55,13 @@ namespace LayoutTemplateWebApp.Pages
             return personList;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            // Aquí debes cargar las solicitudes de eventos desde la base de datos
+            //Solicitudes = _db.Event.Where(e => e.EsSolicitud).ToList();
+            role = HttpContext.Session.GetString("role");
+            PersonList = await LoadPersonsData();
+            Console.WriteLine($"Role: {role}");
         }
     }
 }

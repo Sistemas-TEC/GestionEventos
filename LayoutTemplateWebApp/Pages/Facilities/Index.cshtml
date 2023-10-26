@@ -3,6 +3,25 @@
 
 @{
     ViewData["Title"] = "Index";
+    /*var userRole = @Model.role;
+    string layoutName;
+    switch (userRole)
+    {
+        case "1616": // Estudiante
+            layoutName = "_LayoutEstudiante";
+            break;
+        case "1717": // Profesor
+            layoutName = "_LayoutProfesor";
+            break;
+        case "1919": // Organizador
+            layoutName = "_LayoutOrganizador";
+            break;
+        default:
+            layoutName = "_ErrorLayout";
+            break;
+    }
+
+    Layout = layoutName;*/
 }
 <h1 class="display-2 mt-4 text-center">Gestión de Instalaciones</h1>
 
@@ -28,7 +47,7 @@
                 @Html.DisplayNameFor(model => model.Facility[0].Location)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Facility[0].Image)
+                @Html.DisplayNameFor(model => model.Facility[0].idImage)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Facility[0].FacilityAdministrator)
@@ -52,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Location.description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image.alternative_text)
+                @Html.DisplayFor(modelItem => item.idImage)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FacilityAdministrator.email)

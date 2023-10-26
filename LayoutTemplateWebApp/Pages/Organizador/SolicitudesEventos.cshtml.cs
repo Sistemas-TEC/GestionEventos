@@ -1,27 +1,28 @@
-ï»¿using LayoutTemplateWebApp.Data;
+using LayoutTemplateWebApp.Data;
 using LayoutTemplateWebApp.Model;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace LayoutTemplateWebApp.Pages
 {
-    public class PrivacyModel : PageModel
+    public class SolicitudesEventosModel : PageModel
     {
+        private readonly ApplicationDbContext _db; // Reemplaza con el contexto de tu base de datos
 
+        public List<Event> Solicitudes { get; set; }
         private readonly IHttpClientFactory _clientFactory;
         public string role { get; set; }
 
         public List<UserAPIModel> PersonList { get; set; }
-
         public string RawJsonData { get; set; }
-        private readonly ILogger<PrivacyModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger, IHttpClientFactory clientFactory)
+        public SolicitudesEventosModel(ApplicationDbContext db, IHttpClientFactory clientFactory)
         {
-            _logger = logger;
+            _db = db;
             _clientFactory = clientFactory;
         }
+
 
         public async Task OnGet2()
         {
@@ -58,8 +59,25 @@ namespace LayoutTemplateWebApp.Pages
             return personList;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            // Aquí debes cargar las solicitudes de eventos desde la base de datos
+            //Solicitudes = _db.Event.Where(e => e.EsSolicitud).ToList();
+            role = HttpContext.Session.GetString("role");
+            PersonList = await LoadPersonsData();
+            Console.WriteLine($"Role: {role}");
         }
+
+        public void AceptarSolicitud(int idEvento)
+        {
+            // Aquí puedes implementar la lógica para aceptar la solicitud (actualizar en la base de datos, etc.)
+        }
+
+        public void DenegarSolicitud(int idEvento)
+        {
+            // Aquí puedes implementar la lógica para denegar la solicitud (eliminar de la base de datos, etc.)
+        }
+
+
     }
 }

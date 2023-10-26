@@ -20,13 +20,14 @@ namespace LayoutTemplateWebApp.Model
         [ForeignKey("FacilityType")]
 		public int idFacilityType { get; set; }
 
-        
+        [DisplayName("URL de imagen")]
+        public string idImage { get; set; }
+
         [ForeignKey("Location")]
 		public int idLocation { get; set; }
 
         
-        [ForeignKey("Image")]
-		public int idImage { get; set; }
+
 
         
         [ForeignKey("FacilityAdministrator")]
@@ -40,8 +41,7 @@ namespace LayoutTemplateWebApp.Model
         [DisplayName("Ubicación")]
         public Location Location { get; set; }
 
-        [DisplayName("Imagen")]
-        public Image Image { get; set; }
+
 
         [DisplayName("Administrador")]
         public FacilityAdministrator FacilityAdministrator { get; set; }

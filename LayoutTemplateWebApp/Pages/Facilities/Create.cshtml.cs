@@ -13,10 +13,19 @@ namespace LayoutTemplateWebApp.EventosTemp
     public class CreateModel : PageModel
     {
         private readonly LayoutTemplateWebApp.Data.ApplicationDbContext _context;
+        private readonly IHttpClientFactory _clientFactory;
+        public string role { get; set; }
 
-        public CreateModel(LayoutTemplateWebApp.Data.ApplicationDbContext context)
+        public List<UserAPIModel> PersonList { get; set; }
+
+        public string RawJsonData { get; set; }
+        private readonly ApplicationDbContext _db; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
+
+
+        public CreateModel(LayoutTemplateWebApp.Data.ApplicationDbContext context, IHttpClientFactory clientFactory)
         {
             _context = context;
+            _clientFactory = clientFactory;
         }
 
         public IActionResult OnGet()

@@ -23,6 +23,8 @@ namespace LayoutTemplateWebApp.Pages
 
         public List<UserAPIModel> PersonList { get; set; }
 
+        public Dictionary<int, List<Facility>> GroupedFacilities { get; set; }
+
         public string RawJsonData { get; set; }
         private readonly ApplicationDbContext _db; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
 
@@ -67,11 +69,16 @@ namespace LayoutTemplateWebApp.Pages
         {
             // Recuperar eventos de la base de datos
             var events = _db.Event.ToList();
+            var facilities = _db.Facility.ToList();
 
 
             // Agrupar eventos por fecha
             GroupedEvents = events
                 .GroupBy(e => e.date.Date)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            GroupedFacilities = facilities
+                 .GroupBy(f => f.idFacilityType)
                 .ToDictionary(g => g.Key, g => g.ToList());
 
             role = HttpContext.Session.GetString("role");

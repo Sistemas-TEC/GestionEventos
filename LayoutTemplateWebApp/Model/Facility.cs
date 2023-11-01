@@ -17,23 +17,27 @@ namespace LayoutTemplateWebApp.Model
         public int capacity { get; set; }
 
         
-        [ForeignKey("FacilityType")]
-		public int idFacilityType { get; set; }
+        [ForeignKey("idFacilityType")]
+        [DisplayName("Tipo de Instalación")]
+        public int idFacilityType { get; set; }
 
         [DisplayName("URL de imagen")]
         public string idImage { get; set; }
 
-        [ForeignKey("Location")]
-		public int idLocation { get; set; }
+        [ForeignKey("idLocation")]
+        [DisplayName("Ubicación")]
+        public int idLocation { get; set; }
 
         
 
 
         
-        [ForeignKey("FacilityAdministrator")]
-		public int idFacilityAdministrator { get; set; }
+        [ForeignKey("idFacilityAdministrator")]
+        [DisplayName("Administrador")]
+        public int idFacilityAdministrator { get; set; }
 
         // navigation properties
+
         [DisplayName("Tipo de Instalación")]
         public FacilityType FacilityType { get; set; }
 
@@ -45,6 +49,8 @@ namespace LayoutTemplateWebApp.Model
 
         [DisplayName("Administrador")]
         public FacilityAdministrator FacilityAdministrator { get; set; }
-		
-	}
+
+        public ICollection<Event> events { get; set; }
+
+    }
 }

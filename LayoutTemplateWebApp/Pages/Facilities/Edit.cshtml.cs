@@ -49,8 +49,8 @@ namespace LayoutTemplateWebApp.EventosTemp
             }
             Facility = facility;
            ViewData["idFacilityAdministrator"] = new SelectList(_context.FacilityAdministrator, "idFacilityAdministrator", "email");
-           ViewData["idFacilityType"] = new SelectList(_context.FacilityType, "idFacilityType", "idFacilityType");
-           ViewData["idImage"] = new SelectList(_context.Image, "idImage", "alternative_text");
+           ViewData["idFacilityType"] = new SelectList(_context.FacilityType, "idFacilityType", "name");
+           //ViewData["idImage"] = new SelectList(_context.Image, "idImage", "alternative_text");
            ViewData["idLocation"] = new SelectList(_context.Location, "idLocation", "description");
             return Page();
         }

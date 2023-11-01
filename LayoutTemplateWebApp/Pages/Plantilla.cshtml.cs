@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LayoutTemplateWebApp.Pages
 {
-    public class Option2Model : PageModel
+    public class PlantillaModel : PageModel
 
     {
         private readonly IHttpClientFactory _clientFactory;
@@ -26,7 +26,7 @@ namespace LayoutTemplateWebApp.Pages
         private readonly ApplicationDbContext _db; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
 
 
-        public Option2Model(ApplicationDbContext db, IHttpClientFactory clientFactory)
+        public PlantillaModel(ApplicationDbContext db, IHttpClientFactory clientFactory)
 
         {
             _db = db;
@@ -63,8 +63,9 @@ namespace LayoutTemplateWebApp.Pages
 
 
 
-        public async Task role_setup()
-        {
+        public async Task role_setup() {
+            //var events = _db.Event.ToList();
+            //var facilities = _db.Facility.ToList();
             role = HttpContext.Session.GetString("role");
             PersonList = await LoadPersonsData();
             Console.WriteLine($"Role: {role}");
@@ -73,8 +74,7 @@ namespace LayoutTemplateWebApp.Pages
         {
             role_setup();
             // Recuperar eventos de la base de datos
-            var events = _db.Event.ToList();
-            var facilities = _db.Facility.ToList();
+
 
         }
     }

@@ -12,6 +12,11 @@ namespace LayoutTemplateWebApp.Data
         }
 
         public DbSet<Event> Event { get; set; } // DbSet para la entidad Event
+        public DbSet<Comment> Comment { get; set; } // DbSet para la entidad Event
+
+        public DbSet<EventType> EventType { get; set; }
+
+        public DbSet<EventState> EventState { get; set; }
 
         public DbSet<Facility> Facility { get; set; }
 
@@ -22,7 +27,7 @@ namespace LayoutTemplateWebApp.Data
         public DbSet<Person> Person { get; set; }
 		public DbSet<Image> Image { get; set; }
 		                                        // Agrega otros DbSet para las demás entidades de tu modelo aquí
-        public async Task CreateEventAsync(string name, DateTime date, int idEventState, string description, string organizer, string maxCapacity, string entryCost, int idEventType)
+        /*public async Task CreateEventAsync(string name, DateTime date, int idEventState, string description, string organizer, string maxCapacity, string entryCost, int idEventType)
         {
             using (var connection = Database.GetDbConnection() as SqlConnection)
             {
@@ -45,9 +50,11 @@ namespace LayoutTemplateWebApp.Data
                     await command.ExecuteNonQueryAsync();
                 }
             }
-        }
+        }*/
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+
+            // RELACIONES FACILITY
             modelBuilder.Entity<Facility>().HasOne(fa => fa.FacilityType).
                 WithMany(ft => ft.facilities).HasForeignKey(k => k.idFacilityType);
 			
@@ -59,6 +66,23 @@ namespace LayoutTemplateWebApp.Data
 
             modelBuilder.Entity<Facility>().HasOne(fa => fa.FacilityAdministrator).
                WithMany(fa => fa.facilities).HasForeignKey(k => k.idFacilityAdministrator);
+
+
+            // RELACIONES EVENT
+            modelBuilder.Entity<Event>().HasOne(e => e.EventState).
+               WithMany(es => es.events).HasForeignKey(k => k.idEventState);
+
+             modelBuilder.Entity<Event>().HasOne(e => e.EventType).
+             WithMany(et => et.events).HasForeignKey(k => k.idEventType);
+
+            modelBuilder.Entity<Event>().HasOne(e => e.Facility).
+            WithMany(fa => fa.events).HasForeignKey(k => k.idFacility);
+
+
+            modelBuilder.Entity<Comment>().HasOne(c => c.Event).
+                WithMany(e=> e.Comments).HasForeignKey(k => k.idEvent);
+
+
         }
 
 	}

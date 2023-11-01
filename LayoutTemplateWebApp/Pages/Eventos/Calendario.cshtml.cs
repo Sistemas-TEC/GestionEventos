@@ -13,20 +13,24 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 
-namespace LayoutTemplateWebApp.Pages
+namespace LayoutTemplateWebApp.Pages.Eventos
 {
-    public class Option2Model : PageModel
+    public class CalendarioModel : PageModel
 
     {
         private readonly IHttpClientFactory _clientFactory;
         public string role { get; set; }
 
         public List<UserAPIModel> PersonList { get; set; }
+
+        public Dictionary<int, List<Facility>> GroupedFacilities { get; set; }
+
         public string RawJsonData { get; set; }
         private readonly ApplicationDbContext _db; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
 
+        public Dictionary<DateTime, List<Event>> GroupedEvents { get; set; }
 
-        public Option2Model(ApplicationDbContext db, IHttpClientFactory clientFactory)
+        public CalendarioModel(ApplicationDbContext db, IHttpClientFactory clientFactory)
 
         {
             _db = db;
@@ -61,14 +65,15 @@ namespace LayoutTemplateWebApp.Pages
             return personList;
         }
 
-
-
         public async Task role_setup()
         {
+            var events = _db.Event.ToList();
+            var facilities = _db.Facility.ToList();
             role = HttpContext.Session.GetString("role");
             PersonList = await LoadPersonsData();
             Console.WriteLine($"Role: {role}");
         }
+        public IList<Event> Event { get; set; } = default!;
         public async Task OnGet()
         {
             role_setup();
@@ -76,6 +81,19 @@ namespace LayoutTemplateWebApp.Pages
             var events = _db.Event.ToList();
             var facilities = _db.Facility.ToList();
 
+
+            // Agrupar eventos por fecha
+            GroupedEvents = events
+                .GroupBy(e => e.date.Date)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            GroupedFacilities = facilities
+                 .GroupBy(f => f.idFacilityType)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            role = HttpContext.Session.GetString("role");
+            PersonList = await LoadPersonsData();
+            Console.WriteLine($"Role: {role}");
         }
     }
 }

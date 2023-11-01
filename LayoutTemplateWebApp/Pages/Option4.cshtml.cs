@@ -20,6 +20,7 @@ namespace LayoutTemplateWebApp.Pages
         public string RawJsonData { get; set; }
         private readonly ApplicationDbContext _db;
 
+
         public Dictionary<int, List<Facility>> GroupedFacilities { get; set; }
 
         public List<FacilityType> Ftypes { get; set; }
@@ -117,13 +118,13 @@ namespace LayoutTemplateWebApp.Pages
                 }
             }
             myEvent.organizer = HttpContext.Session.GetString("email");
-            myEvent.idCapacityType = 2;
+            //myEvent.idCapacityType = 2;
             myEvent.idEventState = 1;
-            myEvent.idImage = 1;
+            myEvent.idImage = "url";
             Debug.WriteLine("Fecha del formulario: " + myEvent.idFacility);
             await _db.Event.AddAsync(myEvent);
             await _db.SaveChangesAsync();
-            return RedirectToPage("/Option1");
+            return RedirectToPage("/Eventos/Calendario");
         }
     }
 }

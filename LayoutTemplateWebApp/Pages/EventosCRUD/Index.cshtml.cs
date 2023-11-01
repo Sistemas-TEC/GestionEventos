@@ -1,40 +1,42 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using LayoutTemplateWebApp.Model;
+using Microsoft.EntityFrameworkCore;
 using LayoutTemplateWebApp.Data;
+using LayoutTemplateWebApp.Model;
+using System.Data;
 using System.Text.Json;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
-
-namespace LayoutTemplateWebApp.Pages
+namespace LayoutTemplateWebApp.Pages.EventosCRUD
 {
-    public class Option1Model : PageModel
-
+    public class IndexModel : PageModel
     {
+        private readonly LayoutTemplateWebApp.Data.ApplicationDbContext _context;
         private readonly IHttpClientFactory _clientFactory;
         public string role { get; set; }
 
         public List<UserAPIModel> PersonList { get; set; }
-
-        public Dictionary<int, List<Facility>> GroupedFacilities { get; set; }
-
         public string RawJsonData { get; set; }
         private readonly ApplicationDbContext _db; // Reemplaza "ApplicationDbContext" con el contexto de tu base de datos
-
-        public Dictionary<DateTime, List<Event>> GroupedEvents { get; set; }
-
-        public Option1Model(ApplicationDbContext db, IHttpClientFactory clientFactory)
-
+        public IndexModel(LayoutTemplateWebApp.Data.ApplicationDbContext context, IHttpClientFactory clientFactory)
         {
-            _db = db;
+            _context = context;
             _clientFactory = clientFactory;
+        }
+
+        public IList<Event> Event { get;set; } = default!;
+
+
+        public async Task role_setup()
+        {
+            //var events = _db.Event.ToList();
+            //var facilities = _db.Facility.ToList();
+            role = HttpContext.Session.GetString("role");
+            PersonList = await LoadPersonsData();
+            Console.WriteLine($"Role: {role}");
         }
 
         public async Task<List<UserAPIModel>> LoadPersonsData()
@@ -64,26 +66,16 @@ namespace LayoutTemplateWebApp.Pages
             }
             return personList;
         }
-
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
-            // Recuperar eventos de la base de datos
-            var events = _db.Event.ToList();
-            var facilities = _db.Facility.ToList();
-
-
-            // Agrupar eventos por fecha
-            GroupedEvents = events
-                .GroupBy(e => e.date.Date)
-                .ToDictionary(g => g.Key, g => g.ToList());
-
-            GroupedFacilities = facilities
-                 .GroupBy(f => f.idFacilityType)
-                .ToDictionary(g => g.Key, g => g.ToList());
-
-            role = HttpContext.Session.GetString("role");
-            PersonList = await LoadPersonsData();
-            Console.WriteLine($"Role: {role}");
+            if (_context.Event != null)
+            {
+                await role_setup();
+                Event = await _context.Event
+                .Include(e => e.EventState)
+                .Include(e => e.EventType)
+                .Include(e => e.Facility).ToListAsync();
+            }
         }
     }
 }

@@ -24,11 +24,15 @@
     Layout = layoutName;
 }
 
-<h1>Index</h1>
+<h1 class="display-2 mt-4 text-center">Gestión de Eventos</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <div class="text-center">
+        <a class="btn btn-primary col-2" asp-page="Create">Crear Nuevo Evento</a>
+    </div>
 </p>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -101,9 +105,9 @@
                 @Html.DisplayFor(modelItem => item.Facility.name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.idEvent">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.idEvent">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.idEvent">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.idEvent">Modificar</a> |
+                <a asp-page="./Details" asp-route-id="@item.idEvent">Ver más</a> |
+                <a asp-page="./Delete" asp-route-id="@item.idEvent">Eliminar</a>
             </td>
         </tr>
 }

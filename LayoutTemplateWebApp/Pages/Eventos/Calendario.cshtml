@@ -23,7 +23,7 @@
     Layout = layoutName;
 }
 <!DOCTYPE html>
-<html lang="es-mx">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,26 +59,37 @@
             {
                 @*<div class="col-md-12">*@
                 IDictionary<int, string> ubicaciones = new Dictionary<int, string>();
-                ubicaciones.Add(1, "B3-06");
+                ubicaciones.Add(0, "B3-06");
 
-                ubicaciones.Add(2, "Centro de las Artes");
+                ubicaciones.Add(1, "Centro de las Artes");
 
-                ubicaciones.Add(3, "Piscina TEC");
+                ubicaciones.Add(2, "Piscina TEC");
 
-                ubicaciones.Add(4, "Cancha Multiusos");
+                ubicaciones.Add(3, "Cancha Multiusos");
 
-                ubicaciones.Add(5, "Auditorio de Centro de Investigación en Computación");
+                ubicaciones.Add(4, "Auditorio de Centro de Investigación en Computación");
 
                 IDictionary<int, string> imagenes = new Dictionary<int, string>();
-                imagenes.Add(1, "https://www.zegelipae.edu.pe/sites/default/files/styles/hero_banner_node/public/BLOG/Computaci%C3%B3n%20e%20Inform%C3%A1tica/INFORMATICA-BANNER-DESKTOP.jpg");
+                imagenes.Add(0, "https://dgec.mep.go.cr/sites/all/files/dgec_mep_go_cr/especialidadestecnicas/Informatica%20Empresarial/Informatica_Empresarial/informatica_empresarial.jpg");
 
-                imagenes.Add(2, "https://www.tec.ac.cr/sites/default/files/media/img/body/centro_artes_opt.jpg");
+                imagenes.Add(1, "https://www.tec.ac.cr/sites/default/files/media/img/body/centro_artes_opt.jpg");
 
-                imagenes.Add(3, "https://www.tec.ac.cr/sites/default/files/media/img/piscina.jpg");
+                imagenes.Add(2, "https://www.tec.ac.cr/sites/default/files/media/img/piscina.jpg");
 
-                imagenes.Add(4, "https://www.tec.ac.cr/sites/default/files/media/img/multiusos_tec.jpg");
+                imagenes.Add(3, "https://www.tec.ac.cr/sites/default/files/media/img/multiusos_tec.jpg");
 
-                imagenes.Add(5, "https://www.tec.ac.cr/sites/default/files/media/img/body/cic.png");
+                imagenes.Add(4, "https://www.tec.ac.cr/sites/default/files/media/img/body/cic.png");
+
+                IDictionary<int, string> imagenes_alt = new Dictionary<int, string>();
+                imagenes_alt.Add(0, "Un hombre utilizando un software de programación.");
+
+                imagenes_alt.Add(1, "Fachada del Centro de las Artes del TEC.");
+
+                imagenes_alt.Add(2, "Piscina del TEC.");
+
+                imagenes_alt.Add(3, "Cancha multiusos del TEC.");
+
+                imagenes_alt.Add(4, "Fachada del Centro de Investigación en Computación.");
 
                 IDictionary<int, string> categorias = new Dictionary<int, string>();
                 categorias.Add(1, "Académico");
@@ -110,7 +121,7 @@
                                         <div class="card-body">
 
 
-                                            <img src="@imagenes[evento.idFacility%6]" class="card-img-top border-bottom event_image" alt="texto_alternativo"> @* style="width: 18rem; height:10rem" *@
+                                            <img src="@imagenes[evento.idFacility%5]" class="card-img-top border-bottom event_image" alt="@imagenes_alt[evento.idFacility%5]"> @* style="width: 18rem; height:10rem" *@
 
 
 

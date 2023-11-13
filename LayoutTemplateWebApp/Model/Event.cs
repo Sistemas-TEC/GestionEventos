@@ -39,7 +39,7 @@ namespace LayoutTemplateWebApp.Model
         [DisplayName("Instalación")]
         public int idFacility { get; set; }
 
-        [DisplayName("Imagen")]
+        [DisplayName("Id. de Imagen")]
         public string idImage { get; set; }
 
         [ForeignKey("EventState")]

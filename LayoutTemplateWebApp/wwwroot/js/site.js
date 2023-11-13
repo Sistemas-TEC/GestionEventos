@@ -204,7 +204,9 @@ function applyHighContrast() {
     else if (grayBlack) {
         toggleGrayBlack() // remove the gray black
         sessionStorage.setItem('grayBlack', false);
-    } else {
+    }
+    
+    else {
         toggleInvertedColors()
         sessionStorage.setItem('invertedColors', true);
     }
